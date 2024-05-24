@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MyCapstone</string>
+    <string name="text_login">Login Account</string>
+    <string name="text_register">Register Account</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="title_feature1">history</string>
+    <string name="title_feature2">camera</string>
+    <string name="title_feature3">recomendation</string>
+    <string name="something_wrong">Oops.. something went wrong.</string>
+    <string name="title">Title</string>
+    <string name="published_date">Published Date</string>
+    <string name="tab_text_1">News</string>
+    <string name="tab_text_2">Updates</string>
+    <string name="error_message">An error occurred</string>
+    <string name="retry">retry</string>
+</resources>
