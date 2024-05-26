@@ -1,13 +1,8 @@
 package com.example.mycapstone
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.activity.result.contract.ActivityResultContracts
-import com.example.mycapstone.data.NewsRepository
-import com.example.mycapstone.data.local.room.NewsDatabase
-import com.example.mycapstone.data.remote.retrofit.ApiService
+import android.util.Log
 import com.example.mycapstone.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        try {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+        } catch (e: Exception) {
+            // Tangani kesalahan saat menginflasi layout
+            e.printStackTrace()
+            Log.e("MainActivity", "Error inflating layout: ${e.message}")
+        }
 
         // Set initial fragment
         if (savedInstanceState == null) {
