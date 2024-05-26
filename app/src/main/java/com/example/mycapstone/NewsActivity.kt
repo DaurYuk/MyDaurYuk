@@ -7,7 +7,7 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.databinding.ActivityNewsBinding
-import com.example.mycapstone.ui.NewsViewModel
+import com.example.mycapstone.ui.list.NewsViewModel
 import com.example.mycapstone.ui.detail.NewsDetailActivity
 import com.example.mycapstone.ui.list.NewsAdapter
 
@@ -51,11 +51,6 @@ class NewsActivity : AppCompatActivity() {
 //                binding.viewError.visibility = View.GONE
                 binding.recyclerViewNews.visibility = View.VISIBLE
             }
-        }
-
-        // Retry button logic
-        binding.viewError.retryButton.setOnClickListener {
-            viewModel.retryFetchNews()
         }
 
         // Fetch news initially

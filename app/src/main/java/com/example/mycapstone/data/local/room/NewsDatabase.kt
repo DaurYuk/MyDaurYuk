@@ -12,14 +12,18 @@ abstract class NewsDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var instance: NewsDatabase? = null
-        fun getInstance(context: Context): NewsDatabase =
-            instance ?: synchronized(this) {
-                instance ?: Room.databaseBuilder(
-                    context.applicationContext,
-                    NewsDatabase::class.java, "News.db"
-                ).fallbackToDestructiveMigration().build().also { instance = it }
-            }
+        private var INSTANCE: NewsDatabase? = null
 
+        fun getInstance(context: Context): NewsDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    NewsDatabase::class.java,
+                    "news_database"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
     }
 }

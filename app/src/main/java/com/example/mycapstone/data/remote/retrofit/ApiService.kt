@@ -11,13 +11,11 @@ interface ApiService {
     suspend fun getNews(@Query("apiKey") apiKey: String): NewsResponse
 
     companion object {
-        private const val BASE_URL = "https://example.com/" // Ganti dengan URL basis yang sesuai
         fun create(): ApiService {
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl("https://newsapi.org/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-
             return retrofit.create(ApiService::class.java)
         }
     }

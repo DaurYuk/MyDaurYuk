@@ -11,48 +11,39 @@ import com.example.mycapstone.data.remote.retrofit.ApiService
 import com.example.mycapstone.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityMainBinding
-    private val requestCameraLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val data: Intent? = result.data
-            }
-        }
-
-    // Buat instance dari NewsRepository
-    private val newsRepository = NewsRepository.getInstance(
-        ApiService.create(),
-        NewsDatabase.getInstance(this).newsDao()
-    )
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // bottom bar navigation
+        // Set initial fragment
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, NewsFragment())
+                .commit()
+        }
+
+        // Bottom bar navigation
         binding.bottomNavigationView.setOnNavigationItemReselectedListener { item ->
-            when(item.itemId){
+            when (item.itemId) {
                 R.id.navigation_feature1 -> {
-                    // Panggil fungsi untuk mendapatkan headline news
-                    newsRepository.getHeadlineNews().observe(this, { result ->
-                        // Handle hasil pemanggilan di sini
-                    })
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, NewsFragment())
+                        .commit()
                     true
                 }
                 R.id.navigation_feature2 -> {
+                    // Replace with other fragment if needed
                     true
                 }
                 R.id.navigation_feature3 -> {
+                    // Replace with other fragment if needed
                     true
                 }
                 else -> false
             }
         }
-    }
-
-    private fun startCameraForScanning(){
-        val camereIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        requestCameraLauncher.launch(camereIntent)
     }
 }

@@ -15,7 +15,7 @@ class NewsRepository(
     private val apiService: ApiService,
     private val newsDao: NewsDao
 ) {
-    fun getHeadlineNews(): LiveData<Result<List<NewsEntity>>> = liveData {
+    fun getHeadlineNews(): LiveData<Result<List<NewsEntity>>> = liveData(Dispatchers.IO) {
         emit(Result.Loading)
         try {
             val response = apiService.getNews(BuildConfig.API_KEY)
@@ -30,8 +30,20 @@ class NewsRepository(
             }
             emit(Result.Success(newsList))
         } catch (e: Exception) {
-            Log.d("NewsRepository", "getHeadlineNews: ${e.message.toString()} ")
-            emit(Result.Error(e.message.toString()))
+            Log.e("NewsRepository", "getHeadlineNews: ${e.message}")
+            emit(Result.Error(e.message ?: "An unknown error occurred"))
+        }
+    }
+
+    suspend fun saveNews(news: NewsEntity) {
+        withContext(Dispatchers.IO) {
+            newsDao.saveNews(news)
+        }
+    }
+
+    suspend fun deleteNews(title: String) {
+        withContext(Dispatchers.IO) {
+            newsDao.deleteNews(title)
         }
     }
 
