@@ -1,14 +1,15 @@
 package com.example.mycapstone
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.databinding.ActivityNewsBinding
+import com.example.mycapstone.ui.NewsViewModel
+import com.example.mycapstone.ui.detail.NewsDetailActivity
 import com.example.mycapstone.ui.list.NewsAdapter
-import com.example.mycapstone.ui.list.NewsViewModel
 
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
@@ -24,29 +25,36 @@ class NewsActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
 
         // Setup RecyclerView
-        adapter = NewsAdapter()
+        adapter = NewsAdapter { news ->
+            // Tindakan yang akan dijalankan ketika item berita diklik
+            val intent = Intent(this@NewsActivity, NewsDetailActivity::class.java)
+            intent.putExtra(NewsDetailActivity.NEWS_DATA, news)
+            startActivity(intent)
+        }
         binding.recyclerViewNews.adapter = adapter
         binding.recyclerViewNews.layoutManager = LinearLayoutManager(this)
 
         // Observe data
-        viewModel.newsList.observe(this, { news ->
-            adapter.submitList(news)
-            binding.progressBar.visibility = View.GONE
-        })
+        viewModel.newsList.observe(this) { news ->
+            news?.let {
+                adapter.submitList(it)
+                binding.progressBar.visibility = View.GONE
+            }
+        }
 
         // Observe error state
-        viewModel.errorState.observe(this, { isError ->
+        viewModel.errorState.observe(this) { isError ->
             if (isError) {
-                binding.viewError.visibility = View.VISIBLE
+//                binding.viewError.visibility = View.VISIBLE
                 binding.recyclerViewNews.visibility = View.GONE
             } else {
-                binding.viewError.visibility = View.GONE
+//                binding.viewError.visibility = View.GONE
                 binding.recyclerViewNews.visibility = View.VISIBLE
             }
-        })
+        }
 
         // Retry button logic
-        binding.viewError.findViewById<Button>(R.id.retry_button).setOnClickListener {
+        binding.viewError.retryButton.setOnClickListener {
             viewModel.retryFetchNews()
         }
 
@@ -54,3 +62,4 @@ class NewsActivity : AppCompatActivity() {
         viewModel.fetchNews()
     }
 }
+

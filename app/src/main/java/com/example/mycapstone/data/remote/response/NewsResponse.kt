@@ -1,4 +1,4 @@
-package com.dicoding.newsapp.data.remote.response
+package com.example.mycapstone.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

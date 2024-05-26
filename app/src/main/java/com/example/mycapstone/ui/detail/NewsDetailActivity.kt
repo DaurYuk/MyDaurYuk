@@ -3,9 +3,10 @@ package com.example.mycapstone.ui.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.IntentCompat
-import com.dicoding.newsapp.data.local.entity.NewsEntity
+import com.example.mycapstone.data.local.entity.NewsEntity
 import com.example.mycapstone.ViewModelFactory
 import com.example.mycapstone.databinding.ActivityNewsDetailBinding
 
@@ -24,13 +25,16 @@ class NewsDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         with(IntentCompat.getParcelableExtra(intent, NEWS_DATA, NewsEntity::class.java)){
-            if (this != null){
+            if (this != null && this.url != null){
                 newsDetail = this
                 supportActionBar?.title = newsDetail.title
                 binding.webView.webViewClient = WebViewClient()
-                binding.webView.loadUrl(newsDetail.url.toString())
+                newsDetail.url?.let { binding.webView.loadUrl(it) }
 
                 viewModel.setNewsData(newsDetail)
+            } else {
+                Toast.makeText(this@NewsDetailActivity, "URL berita tidak tersedia", Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
     }

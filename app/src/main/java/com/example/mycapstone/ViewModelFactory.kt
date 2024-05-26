@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.mycapstone.data.NewsRepository
-import com.dicoding.newsapp.di.Injection
+import com.example.mycapstone.data.di.Injection
+import com.example.mycapstone.ui.NewsViewModel
 import com.example.mycapstone.ui.detail.NewsDetailViewModel
-import com.example.mycapstone.ui.list.NewsViewModel
 
 class ViewModelFactory private constructor(private val newsRepository: NewsRepository) :
     ViewModelProvider.NewInstanceFactory() {

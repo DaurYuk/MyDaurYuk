@@ -1,20 +1,18 @@
 package com.example.mycapstone.ui.list
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dicoding.newsapp.data.local.entity.NewsEntity
-import com.example.mycapstone.utils.DateFormatter
 import com.example.mycapstone.R
+import com.example.mycapstone.data.local.entity.NewsEntity
 import com.example.mycapstone.databinding.ItemNewsBinding
-import java.util.*
+import com.example.mycapstone.utils.DateFormatter
+import java.util.TimeZone
 
 class NewsAdapter(private val onItemClick: (NewsEntity) -> Unit) : ListAdapter<NewsEntity, NewsAdapter.MyViewHolder>(
     DIFF_CALLBACK
@@ -25,7 +23,6 @@ class NewsAdapter(private val onItemClick: (NewsEntity) -> Unit) : ListAdapter<N
         return MyViewHolder(binding, onItemClick)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val news = getItem(position)
         holder.bind(news)
@@ -34,7 +31,6 @@ class NewsAdapter(private val onItemClick: (NewsEntity) -> Unit) : ListAdapter<N
     class MyViewHolder(private val binding: ItemNewsBinding, val onItemClick: (NewsEntity) -> Unit) : RecyclerView.ViewHolder(
         binding.root
     ) {
-        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(news: NewsEntity) {
             binding.tvItemTitle.text = news.title
             binding.tvItemPublishedDate.text = DateFormatter.formatDate(news.publishedAt, TimeZone.getDefault().id)

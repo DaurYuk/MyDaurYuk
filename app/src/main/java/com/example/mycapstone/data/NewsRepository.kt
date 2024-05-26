@@ -1,11 +1,15 @@
 package com.example.mycapstone.data
 
+import com.example.mycapstone.BuildConfig
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.dicoding.newsapp.data.local.entity.NewsEntity
-import com.dicoding.newsapp.data.local.room.NewsDao
-import com.dicoding.newsapp.data.remote.retrofit.ApiService
+import com.example.mycapstone.data.local.entity.NewsEntity
+import com.example.mycapstone.data.local.room.NewsDao
+import com.example.mycapstone.data.remote.retrofit.ApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 
 class NewsRepository(
     private val apiService: ApiService,
@@ -29,14 +33,6 @@ class NewsRepository(
             Log.d("NewsRepository", "getHeadlineNews: ${e.message.toString()} ")
             emit(Result.Error(e.message.toString()))
         }
-    }
-
-    suspend fun saveNews(news: NewsEntity) {
-        newsDao.saveNews(news)
-    }
-
-    suspend fun deleteNews(title: String) {
-        newsDao.deleteNews(title)
     }
 
     companion object {
