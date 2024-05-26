@@ -10,7 +10,7 @@ import com.example.mycapstone.databinding.ActivityNewsBinding
 import com.example.mycapstone.ui.list.NewsViewModel
 import com.example.mycapstone.ui.detail.NewsDetailActivity
 import com.example.mycapstone.ui.list.NewsAdapter
-
+import com.example.mycapstone.data.Result
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
     private lateinit var viewModel: NewsViewModel
@@ -35,21 +35,22 @@ class NewsActivity : AppCompatActivity() {
         binding.recyclerViewNews.layoutManager = LinearLayoutManager(this)
 
         // Observe data
-        viewModel.newsList.observe(this) { news ->
-            news?.let {
-                adapter.submitList(it)
-                binding.progressBar.visibility = View.GONE
-            }
-        }
+        viewModel.newsList.observe(this) { result ->
+            when (result) {
+                is Result.Success -> {
+                    adapter.submitList(result.data)
+                    binding.progressBar.visibility = View.GONE
+                }
 
-        // Observe error state
-        viewModel.errorState.observe(this) { isError ->
-            if (isError) {
-//                binding.viewError.visibility = View.VISIBLE
-                binding.recyclerViewNews.visibility = View.GONE
-            } else {
-//                binding.viewError.visibility = View.GONE
-                binding.recyclerViewNews.visibility = View.VISIBLE
+                is Result.Error -> {
+                    binding.viewError.root.visibility = View.VISIBLE
+                    binding.recyclerViewNews.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
+                }
+
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -57,4 +58,3 @@ class NewsActivity : AppCompatActivity() {
         viewModel.fetchNews()
     }
 }
-

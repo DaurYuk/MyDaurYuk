@@ -24,7 +24,7 @@ class NewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -61,6 +61,17 @@ class NewsFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     binding.viewError.root.visibility = View.VISIBLE
                 }
+            }
+        }
+
+        // Observe error state
+        viewModel.errorState.observe(viewLifecycleOwner) { isError ->
+            if (isError) {
+                binding.viewError.root.visibility = View.VISIBLE
+                binding.rvNews.visibility = View.GONE
+            } else {
+                binding.viewError.root.visibility = View.GONE
+                binding.rvNews.visibility = View.VISIBLE
             }
         }
 
