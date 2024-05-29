@@ -7,11 +7,12 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/news_image"
+        android:id="@+id/newsImage"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:contentDescription="@string/news_image"
         android:scaleType="centerCrop"
+        tools:background="@drawable/baseline_history_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +26,7 @@
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/news_image" />
+        app:layout_constraintTop_toBottomOf="@id/newsImage" />
 
     <TextView
         android:id="@+id/news_date"

@@ -2,6 +2,7 @@ package com.example.mycapstone.ui.list
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -38,12 +39,22 @@ class NewsAdapter(private val onItemClick: (NewsEntity) -> Unit) : ListAdapter<N
         fun bind(news: NewsEntity) {
             binding.newsTitle.text = news.title
             binding.newsDate.text = DateFormatter.formatDate(news.publishedAt, TimeZone.getDefault().id)
-            Glide.with(itemView.context)
-                .load(news.urlToImage)
-                .apply(
-                    RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
-                )
-                .into(binding.newsImage)
+
+            // Log the URL for debugging purposes
+            Log.d("NewsAdapter", "Loading image from URL: ${news.urlToImage}")
+
+            if (news.urlToImage.isNullOrEmpty()) {
+                binding.newsImage.setImageResource(R.drawable.ic_error)
+            } else {
+                Glide.with(itemView.context)
+                    .load(news.urlToImage)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
+                    .into(binding.newsImage)
+            }
+
             itemView.setOnClickListener {
                 onItemClick(news)
             }
