@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.example.mycapstone.camera.CameraActivity
 import com.example.mycapstone.databinding.ActivityMainBinding
 import com.example.mycapstone.profile.ProfileActivity
 
@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_feature2 -> {
-                    // Replace with other fragment if needed
+                   val intent = Intent(this, CameraActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.navigation_feature3 -> {
