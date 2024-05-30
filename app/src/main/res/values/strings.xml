@@ -20,4 +20,7 @@
     <string name="retry">retry</string>
     <string name="news_image">news image</string>
     <string name="berita">Berita</string>
+    <string name="profile">Profile</string>
+    <string name="account_name">Nama Pengguna</string>
+    <string name="logout">logout</string>
 </resources>
