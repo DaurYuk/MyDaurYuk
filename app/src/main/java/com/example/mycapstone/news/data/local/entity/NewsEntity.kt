@@ -1,4 +1,4 @@
-package com.example.mycapstone.data.local.entity
+package com.example.mycapstone.news.data.local.entity
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

@@ -1,4 +1,4 @@
-package com.example.mycapstone.ui.list
+package com.example.mycapstone.news.ui.list
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.mycapstone.R
-import com.example.mycapstone.data.local.entity.NewsEntity
+import com.example.mycapstone.news.data.local.entity.NewsEntity
 import com.example.mycapstone.databinding.ItemNewsBinding
-import com.example.mycapstone.utils.DateFormatter
+import com.example.mycapstone.news.utils.DateFormatter
 import java.util.TimeZone
 
 class NewsAdapter(private val onItemClick: (NewsEntity) -> Unit) : ListAdapter<NewsEntity, NewsAdapter.MyViewHolder>(
@@ -44,13 +44,13 @@ class NewsAdapter(private val onItemClick: (NewsEntity) -> Unit) : ListAdapter<N
             Log.d("NewsAdapter", "Loading image from URL: ${news.urlToImage}")
 
             if (news.urlToImage.isNullOrEmpty()) {
-                binding.newsImage.setImageResource(R.drawable.ic_error)
+                binding.newsImage.setImageResource(R.drawable.imagenews)
             } else {
                 Glide.with(itemView.context)
                     .load(news.urlToImage)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_error)
+                            .error(R.drawable.imagenews)
                     )
                     .into(binding.newsImage)
             }

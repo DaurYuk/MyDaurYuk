@@ -1,13 +1,13 @@
-package com.example.mycapstone.data.remote.retrofit
+package com.example.mycapstone.news.data.remote.retrofit
 
-import com.example.mycapstone.data.remote.response.NewsResponse
+import com.example.mycapstone.news.data.remote.response.NewsResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("top-headlines?country=id&category=science")
+    @GET("top-headlines?country=id&category=business")
     suspend fun getNews(@Query("apiKey") apiKey: String): NewsResponse
 
     companion object {

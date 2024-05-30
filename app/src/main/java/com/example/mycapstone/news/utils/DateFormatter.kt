@@ -1,4 +1,4 @@
-package com.example.mycapstone.utils
+package com.example.mycapstone.news.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi

@@ -7,35 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- LinearLayout to hold the TextView and FrameLayout -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/berita"
+        android:textSize="30sp"
+        android:paddingTop="30dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Title TextView -->
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Berita"
-            android:textSize="30sp"
-            android:paddingTop="30dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="20dp" />
-
-        <!-- Content FrameLayout to display fragments or activities -->
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-    </LinearLayout>
+    <!-- Content FrameLayout to display fragments or activities -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
     <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -47,5 +39,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

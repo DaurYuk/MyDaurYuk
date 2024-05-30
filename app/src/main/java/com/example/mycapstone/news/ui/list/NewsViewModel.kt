@@ -1,12 +1,12 @@
-package com.example.mycapstone.ui.list
+package com.example.mycapstone.news.ui.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mycapstone.data.NewsRepository
-import com.example.mycapstone.data.local.entity.NewsEntity
-import com.example.mycapstone.data.Result
+import com.example.mycapstone.news.data.NewsRepository
+import com.example.mycapstone.news.data.local.entity.NewsEntity
+import com.example.mycapstone.news.data.Result
 import kotlinx.coroutines.launch
 
 class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {

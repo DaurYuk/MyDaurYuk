@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MyCapstone"
         tools:targetApi="31">
         <activity
-            android:name=".ui.detail.NewsDetailActivity"
+            android:name=".news.ui.detail.NewsDetailActivity"
             android:exported="false" />
         <activity
             android:name=".NewsActivity"

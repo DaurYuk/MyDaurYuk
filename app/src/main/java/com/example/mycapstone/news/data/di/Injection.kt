@@ -1,9 +1,9 @@
-package com.example.mycapstone.data.di
+package com.example.mycapstone.news.data.di
 
 import android.content.Context
-import com.example.mycapstone.data.NewsRepository
-import com.example.mycapstone.data.local.room.NewsDatabase
-import com.example.mycapstone.data.remote.retrofit.ApiConfig
+import com.example.mycapstone.news.data.NewsRepository
+import com.example.mycapstone.news.data.local.room.NewsDatabase
+import com.example.mycapstone.news.data.remote.retrofit.ApiConfig
 
 object Injection {
     fun provideRepository(context: Context): NewsRepository {

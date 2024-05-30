@@ -1,4 +1,4 @@
-package com.example.mycapstone.data.remote.retrofit
+package com.example.mycapstone.news.data.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

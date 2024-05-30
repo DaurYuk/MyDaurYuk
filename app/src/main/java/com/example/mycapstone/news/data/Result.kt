@@ -1,4 +1,4 @@
-package com.example.mycapstone.data
+package com.example.mycapstone.news.data
 
 sealed class Result<out T> {
     object Loading : Result<Nothing>()

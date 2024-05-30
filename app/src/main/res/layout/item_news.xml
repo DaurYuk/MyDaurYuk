@@ -12,7 +12,7 @@
         android:layout_height="200dp"
         android:contentDescription="@string/news_image"
         android:scaleType="centerCrop"
-        tools:background="@drawable/baseline_history_24"
+        tools:background="@drawable/imagenews"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

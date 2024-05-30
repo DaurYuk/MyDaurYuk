@@ -1,12 +1,12 @@
-package com.example.mycapstone.data
+package com.example.mycapstone.news.data
 
 import com.example.mycapstone.BuildConfig
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.example.mycapstone.data.local.entity.NewsEntity
-import com.example.mycapstone.data.local.room.NewsDao
-import com.example.mycapstone.data.remote.retrofit.ApiService
+import com.example.mycapstone.news.data.local.entity.NewsEntity
+import com.example.mycapstone.news.data.local.room.NewsDao
+import com.example.mycapstone.news.data.remote.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

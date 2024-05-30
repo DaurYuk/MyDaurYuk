@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.databinding.FragmentNewsBinding
-import com.example.mycapstone.ui.detail.NewsDetailActivity
-import com.example.mycapstone.ui.list.NewsAdapter
-import com.example.mycapstone.ui.list.NewsViewModel
-import com.example.mycapstone.data.Result
+import com.example.mycapstone.news.ui.detail.NewsDetailActivity
+import com.example.mycapstone.news.ui.list.NewsAdapter
+import com.example.mycapstone.news.ui.list.NewsViewModel
+import com.example.mycapstone.news.data.Result
 class NewsFragment : Fragment() {
 
     private var _binding: FragmentNewsBinding? = null

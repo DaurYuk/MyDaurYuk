@@ -1,10 +1,10 @@
-package com.example.mycapstone.data.local.room
+package com.example.mycapstone.news.data.local.room
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.mycapstone.data.local.entity.NewsEntity
+import com.example.mycapstone.news.data.local.entity.NewsEntity
 
 @Dao
 interface NewsDao {

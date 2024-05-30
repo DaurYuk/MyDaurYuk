@@ -10,8 +10,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         try {
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Bottom bar navigation
-        binding.bottomNavigationView.setOnNavigationItemReselectedListener { item ->
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_feature1 -> {
                     supportFragmentManager.beginTransaction()

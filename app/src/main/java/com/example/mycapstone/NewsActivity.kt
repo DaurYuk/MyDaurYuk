@@ -4,13 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.databinding.ActivityNewsBinding
-import com.example.mycapstone.ui.list.NewsViewModel
-import com.example.mycapstone.ui.detail.NewsDetailActivity
-import com.example.mycapstone.ui.list.NewsAdapter
-import com.example.mycapstone.data.Result
+import com.example.mycapstone.news.ui.list.NewsViewModel
+import com.example.mycapstone.news.ui.detail.NewsDetailActivity
+import com.example.mycapstone.news.ui.list.NewsAdapter
+import com.example.mycapstone.news.data.Result
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
     private lateinit var viewModel: NewsViewModel
@@ -22,7 +23,7 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Initialize ViewModel
-        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+        viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
 
         // Setup RecyclerView
         adapter = NewsAdapter { news ->
@@ -46,6 +47,9 @@ class NewsActivity : AppCompatActivity() {
                     binding.viewError.root.visibility = View.VISIBLE
                     binding.recyclerViewNews.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
+                    // Menampilkan pesan kesalahan
+                    val errorMessage = "Failed to load news: ${result.message}"
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
                 }
 
                 is Result.Loading -> {

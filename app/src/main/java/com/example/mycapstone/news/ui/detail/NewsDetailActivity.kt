@@ -1,4 +1,4 @@
-package com.example.mycapstone.ui.detail
+package com.example.mycapstone.news.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.IntentCompat
-import com.example.mycapstone.data.local.entity.NewsEntity
+import com.example.mycapstone.news.data.local.entity.NewsEntity
 import com.example.mycapstone.ViewModelFactory
 import com.example.mycapstone.databinding.ActivityNewsDetailBinding
 
@@ -25,11 +25,11 @@ class NewsDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         with(IntentCompat.getParcelableExtra(intent, NEWS_DATA, NewsEntity::class.java)){
-            if (this != null && this.url != null){
+            if (this != null){
                 newsDetail = this
                 supportActionBar?.title = newsDetail.title
                 binding.webView.webViewClient = WebViewClient()
-                newsDetail.url?.let { binding.webView.loadUrl(it) }
+                binding.webView.loadUrl(newsDetail.url.toString())
 
                 viewModel.setNewsData(newsDetail)
             } else {

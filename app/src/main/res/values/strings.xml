@@ -19,4 +19,5 @@
     <string name="error_message">An error occurred</string>
     <string name="retry">retry</string>
     <string name="news_image">news image</string>
+    <string name="berita">Berita</string>
 </resources>
