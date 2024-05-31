@@ -60,7 +60,7 @@ class CameraActivity : AppCompatActivity() {
 
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCamera() }
-        binding.cameraXButton.setOnClickListener { startCameraX() }
+//        binding.cameraXButton.setOnClickListener { startCameraX() }
         binding.uploadButton.setOnClickListener { uploadImage() }
     }
 

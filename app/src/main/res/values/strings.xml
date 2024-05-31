@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyCapstone</string>
+    <string name="app_name">DaurYuk</string>
     <string name="text_login">Login Account</string>
     <string name="text_register">Register Account</string>
     <string name="email">Email</string>
