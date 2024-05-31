@@ -1,103 +1,111 @@
 package com.example.mycapstone.camera
 
+import android.Manifest
 import android.content.Intent
-import android.graphics.BitmapFactory
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.widget.Button
-import android.widget.ImageView
-import androidx.core.content.FileProvider
-import com.example.mycapstone.BuildConfig
-import com.example.mycapstone.R
-import java.io.File
-import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
+import com.example.mycapstone.camera.CameraActivity2.Companion.CAMERAX_RESULT
+import com.example.mycapstone.databinding.ActivityCameraBinding
 
 class CameraActivity : AppCompatActivity() {
-    private lateinit var captureButton: Button
-    private lateinit var imageView: ImageView
-    private lateinit var currentPhotoPath: String
+    private lateinit var binding:ActivityCameraBinding
+    private var currentImageUri: Uri? = null
 
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ){ isGranted: Boolean ->
+            if (isGranted){
+                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
+            }
+
+        }
+    private fun allPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+            this,
+            REQUIRED_PERMISSION
+        ) == PackageManager.PERMISSION_GRANTED
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_camera)
+        binding = ActivityCameraBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        captureButton = findViewById(R.id.captureButton)
-        imageView = findViewById(R.id.imageView)
+        if(!allPermissionGranted()){
+            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
+        }
 
-        captureButton.setOnClickListener {
-            dispatchTakePictureIntent()
+        binding.galleryButton.setOnClickListener { startGallery() }
+        binding.cameraButton.setOnClickListener { startCamera() }
+        binding.cameraXButton.setOnClickListener { startCameraX() }
+        binding.uploadButton.setOnClickListener { uploadImage() }
+    }
+
+    // Gallery
+    private fun startGallery(){
+       launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ){uri: Uri? ->
+        if (uri != null){
+            currentImageUri = uri
+            showImage()
+        }else {
+            Log.d("Photo Picker", "No media selected")
         }
     }
 
-    private val REQUEST_IMAGE_CAPTURE = 1
-
-    private fun dispatchTakePictureIntent() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(packageManager)?.also {
-                val photoFile: File? = try {
-                    createImageFile()
-                } catch (ex: IOException) {
-                    null
-                }
-                photoFile?.also {
-                    val photoURI: Uri = FileProvider.getUriForFile(
-                        this,
-                        "${BuildConfig.APPLICATION_ID}.fileprovider",
-                        it
-                    )
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-                }
-            }
+    private fun showImage(){
+        currentImageUri?.let {
+            Log.d("Image URI", "showImage: $it")
+            binding.previewImageView.setImageURI(it)
         }
     }
 
-    @Throws(IOException::class)
-    private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
-        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile(
-            "JPEG_${timeStamp}_",
-            ".jpg",
-            storageDir
-        ).apply {
-            currentPhotoPath = absolutePath
+    // Camera
+    private fun startCamera(){
+        currentImageUri = getImageUri(this)
+        launcherIntentCamera.launch(currentImageUri)
+    }
+
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ){ isSuccess: Boolean ->
+        if (isSuccess){
+            showImage()
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            setPic()
-        }
+    // Camera X
+    private fun startCameraX(){
+        val intent = Intent(this, CameraActivity2::class.java)
+        launchIntentCameraX.launch(intent)
     }
 
-    private fun setPic() {
-        val targetW: Int = imageView.width
-        val targetH: Int = imageView.height
+    private val launchIntentCameraX = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){if (it.resultCode == CAMERAX_RESULT)
+        currentImageUri = it.data?.getStringExtra(CameraActivity2.EXTRA_CAMERAX_IMAGE)?.toUri()
+        showImage()
+    }
 
-        val bmOptions = BitmapFactory.Options().apply {
-            inJustDecodeBounds = true
-            BitmapFactory.decodeFile(currentPhotoPath, this)
-            val photoW: Int = outWidth
-            val photoH: Int = outHeight
+    // Upload Image
+    private fun uploadImage() {
+        Toast.makeText(this, "Fitur ini belum tersedia", Toast.LENGTH_SHORT).show()
+    }
 
-            val scaleFactor: Int = Math.min(photoW / targetW, photoH / targetH)
-
-            inJustDecodeBounds = false
-            inSampleSize = scaleFactor
-            inPurgeable = true
-        }
-        BitmapFactory.decodeFile(currentPhotoPath, bmOptions)?.also { bitmap ->
-            imageView.setImageBitmap(bitmap)
-        }
+    companion object {
+        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }
 }

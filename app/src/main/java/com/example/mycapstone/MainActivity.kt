@@ -35,10 +35,13 @@ class MainActivity : AppCompatActivity() {
         // Bottom bar navigation
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_feature1 -> {
+                R.id.navigation_home -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, NewsFragment())
                         .commit()
+                    true
+                }
+                R.id.navigation_feature1 -> {
                     true
                 }
                 R.id.navigation_feature2 -> {

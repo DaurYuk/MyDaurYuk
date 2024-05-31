@@ -23,4 +23,9 @@
     <string name="profile">Profile</string>
     <string name="account_name">Nama Pengguna</string>
     <string name="logout">logout</string>
+    <string name="title_home">home</string>
+    <string name="camera">Camera</string>
+    <string name="camera_x">CameraX</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
 </resources>
