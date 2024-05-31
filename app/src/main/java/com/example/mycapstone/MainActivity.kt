@@ -8,7 +8,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mycapstone.camera.CameraActivity
 import com.example.mycapstone.databinding.ActivityMainBinding
+import com.example.mycapstone.history.HistoryActivity
 import com.example.mycapstone.profile.ProfileActivity
+import com.example.mycapstone.recomendation.RecomendationActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -41,16 +43,19 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.navigation_feature1 -> {
+                R.id.navigation_history -> {
+                    val intent = Intent(this, HistoryActivity::class.java)
+                    startActivity(intent)
                     true
                 }
-                R.id.navigation_feature2 -> {
+                R.id.navigation_camera -> {
                    val intent = Intent(this, CameraActivity::class.java)
                     startActivity(intent)
                     true
                 }
-                R.id.navigation_feature3 -> {
-                    // Replace with other fragment if needed
+                R.id.navigation_recomendation -> {
+                    val intent = Intent(this, RecomendationActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false

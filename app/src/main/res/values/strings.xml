@@ -29,4 +29,6 @@
     <string name="gallery">Gallery</string>
     <string name="upload">Upload</string>
     <string name="empty_image_warning">nothing</string>
+    <string name="history">History</string>
+    <string name="recomendation">recomendation</string>
 </resources>
