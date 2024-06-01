@@ -22,6 +22,8 @@ import com.example.mycapstone.camera.CameraActivity2.Companion.CAMERAX_RESULT
 import com.example.mycapstone.camera.api.ApiConfig
 import com.example.mycapstone.camera.api.FileUploadResponse
 import com.example.mycapstone.databinding.ActivityCameraBinding
+import com.example.mycapstone.history.db.History
+import com.example.mycapstone.history.db.HistoryDb
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
@@ -140,6 +142,13 @@ class CameraActivity : AppCompatActivity() {
                             showToast("Model is predicted successfully but under threshold.")
                             String.format("Tingkat kemiripan dengan monyet %.2f%%", confidenceScore)
                         }
+
+                        val history = History(
+                            imagePath = imageFile.path,
+                            result = result.toString(),
+                            confidenceScore = confidenceScore ?: 0.0
+                        )
+                        saveToHistory(history)
                     }
                     showLoading(false)
                 }catch (e: HttpException) {
@@ -163,6 +172,14 @@ class CameraActivity : AppCompatActivity() {
             }
 
         }?: showToast(getString(R.string.empty_image_warning))
+    }
+
+    private fun saveToHistory(history: History){
+        val db = HistoryDb.getDatabse(applicationContext)
+        lifecycleScope.launch{
+            db.historyDao().insert(history)
+            showToast("Classification saved to history")
+        }
     }
     private fun showLoading(isLoading: Boolean) {
         binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE

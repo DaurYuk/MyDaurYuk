@@ -55,7 +55,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/closeImageView" />
 
             <TextView
-                android:id="@+id/descriptionTextView"
+                android:id="@+id/confidenceTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="@string/deskripsi_sampah"

@@ -41,6 +41,6 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun authenticate(username: String, password: String): Boolean {
         // Logika autentikasi sederhana
-        return username == "user" && password == "password"
+        return username == "a" && password == "a"
     }
 }

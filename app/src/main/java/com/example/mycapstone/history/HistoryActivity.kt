@@ -2,12 +2,12 @@ package com.example.mycapstone.history
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mycapstone.R
 import com.example.mycapstone.databinding.ActivityHistoryBinding
 import com.example.mycapstone.history.adapter.HistoryAdapter
-import com.example.mycapstone.history.db.HistoryItem
+import com.example.mycapstone.history.db.HistoryDb
+import kotlinx.coroutines.launch
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryBinding
@@ -16,19 +16,15 @@ class HistoryActivity : AppCompatActivity() {
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerViewHistory)
+        binding.recyclerViewHistory.layoutManager = LinearLayoutManager(this)
+        val adapter = HistoryAdapter()
+        binding.recyclerViewHistory.adapter = adapter
 
-        val historyList = dummyHistoryList()
-        recyclerView.adapter = HistoryAdapter(historyList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
+        val db = HistoryDb.getDatabse(applicationContext)
+        lifecycleScope.launch{
+            val historyList = db.historyDao().getAllHistory()
+            adapter.submitList(historyList)
+        }
     }
-    private fun dummyHistoryList(): List<HistoryItem> {
-        val list = ArrayList<HistoryItem>()
-        list.add(HistoryItem("Item 1", "deskripsi 1", "img1"))
-        list.add(HistoryItem("Item 2", "deskripsi 2", "img1"))
-        list.add(HistoryItem("Item 3", "deskripsi 3", "img1"))
-        list.add(HistoryItem("Item 4", "deskripsi 4", "img1"))
-        return list
-    }
+
 }
