@@ -10,7 +10,7 @@ import com.example.mycapstone.camera.CameraActivity
 import com.example.mycapstone.databinding.ActivityMainBinding
 import com.example.mycapstone.history.HistoryActivity
 import com.example.mycapstone.profile.ProfileActivity
-import com.example.mycapstone.recomendation.RecomendationActivity
+import com.example.mycapstone.recomendation.RecommendationActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_recomendation -> {
-                    val intent = Intent(this, RecomendationActivity::class.java)
+                    val intent = Intent(this, RecommendationActivity::class.java)
                     startActivity(intent)
                     true
                 }
