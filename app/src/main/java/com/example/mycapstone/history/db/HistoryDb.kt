@@ -13,7 +13,7 @@ abstract class HistoryDb : RoomDatabase() {
         @Volatile
         private var INSTANCE: HistoryDb? = null
 
-        fun getDatabse(context: Context): HistoryDb{
+        fun getDatabase(context: Context): HistoryDb{
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,

@@ -68,7 +68,7 @@ class CameraActivity : AppCompatActivity() {
 
     // Gallery
     private fun startGallery(){
-       launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
     private val launcherGallery = registerForActivityResult(
@@ -175,7 +175,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun saveToHistory(history: History){
-        val db = HistoryDb.getDatabse(applicationContext)
+        val db = HistoryDb.getDatabase(applicationContext)
         lifecycleScope.launch{
             db.historyDao().insert(history)
             showToast("Classification saved to history")
