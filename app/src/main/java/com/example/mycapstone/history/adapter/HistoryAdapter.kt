@@ -16,20 +16,34 @@ import com.example.mycapstone.history.db.History
 import com.example.mycapstone.history.db.HistoryDb
 
 
-class HistoryAdapter : ListAdapter<History, HistoryAdapter.HistoryViewHolder>(DIFF_CALLBACK){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        val binding = ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HistoryViewHolder(binding)
-    }
-    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
+class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+
+    private var historyList = listOf<History>()
+
     class HistoryViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(history: History) {
             binding.imageClassification.setImageURI(history.imagePath.toUri())
             binding.classificationTextView.text = history.result
             binding.confidenceTextView.text = "Confidence: ${history.confidenceScore}%"
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
+        val binding = ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return HistoryViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
+        holder.bind(historyList[position])
+    }
+
+    override fun getItemCount(): Int {
+        return historyList.size
+    }
+
+    fun submitList(list: List<History>) {
+        historyList = list
+        notifyDataSetChanged()
     }
 
     companion object {
@@ -43,5 +57,4 @@ class HistoryAdapter : ListAdapter<History, HistoryAdapter.HistoryViewHolder>(DI
             }
         }
     }
-
 }
