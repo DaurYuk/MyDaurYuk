@@ -8,10 +8,10 @@ import androidx.room.Query
 @Dao
 interface HistoryDao {
     @Insert
-    suspend fun insert(history:History)
+    suspend fun insert(history: History)
 
-    @Query("SELECT * FROM history ORDER BY id DESC")
-    suspend fun getAllHistory(): List<History>
+    @Query("SELECT * FROM history ORDER BY id DESC LIMIT :limit OFFSET :offset")
+    suspend fun getPagedHistory(limit: Int, offset: Int): List<History>
 
     @Delete
     suspend fun deleteHistory(history: History)

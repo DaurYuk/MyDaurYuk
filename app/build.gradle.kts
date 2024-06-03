@@ -79,4 +79,8 @@ dependencies {
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
+
+    // Paging 3
+    val pagingVersion = "3.0.0"
+    implementation ("androidx.paging:paging-runtime:$pagingVersion")
 }

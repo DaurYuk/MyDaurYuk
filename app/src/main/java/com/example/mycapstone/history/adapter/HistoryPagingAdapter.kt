@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mycapstone.databinding.ItemHistoryBinding
 import com.example.mycapstone.history.db.History
 
-class HistoryAdapter(private val onDeleteClick: (History) -> Unit) : PagingDataAdapter<History, HistoryAdapter.HistoryViewHolder>(DIFF_CALLBACK) {
+class HistoryPagingAdapter(private val onDeleteClick: (History) -> Unit) : PagingDataAdapter<History, HistoryPagingAdapter.HistoryViewHolder>(
+    DIFF_CALLBACK
+) {
 
     class HistoryViewHolder(private val binding: ItemHistoryBinding, private val onDeleteClick: (History) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(history: History) {
@@ -32,7 +34,10 @@ class HistoryAdapter(private val onDeleteClick: (History) -> Unit) : PagingDataA
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(getItem(position) ?: return)
+        val history = getItem(position)
+        if (history != null) {
+            holder.bind(history)
+        }
     }
 
     companion object {
@@ -46,5 +51,5 @@ class HistoryAdapter(private val onDeleteClick: (History) -> Unit) : PagingDataA
             }
         }
     }
-
 }
+
