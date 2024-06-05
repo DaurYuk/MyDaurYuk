@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@drawable/bggambar"
         android:padding="16dp">
 
         <TextView
@@ -20,6 +20,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="@string/text_register"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="50dp"/>
@@ -38,6 +40,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/gmailEditText"
                 android:textColor="@color/black"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -56,6 +59,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/usernameEditText"
                 android:textColor="@color/black"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,6 +79,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
                 android:textColor="@color/black"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -87,6 +92,7 @@
             android:layout_marginTop="32dp"
             android:textColor="@color/white"
             android:text="@string/register"
+            android:backgroundTint="@color/selected_bottom_nav_color"
             app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

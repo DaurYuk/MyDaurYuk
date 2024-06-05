@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@drawable/bggambar"
         android:padding="16dp">
 
         <TextView
@@ -16,6 +16,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="@string/text_login"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/usernameInputLayout"
@@ -36,6 +38,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/usernameEditText"
                 android:textColor="@color/black"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -55,6 +58,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
                 android:textColor="@color/black"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -65,7 +69,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:backgroundTint="@color/selected_bottom_nav_color"
             android:text="@string/login"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -76,6 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="@string/register"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/default_bottom_nav_color"
             app:layout_constraintTop_toBottomOf="@id/loginButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -85,6 +93,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/forgot_password"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/selected_bottom_nav_color"
             app:layout_constraintTop_toBottomOf="@id/registerButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

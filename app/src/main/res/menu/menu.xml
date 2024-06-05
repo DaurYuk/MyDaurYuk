@@ -5,5 +5,6 @@
         android:id="@+id/action_profile"
         android:icon="@drawable/baseline_account_circle_24"
         android:title="@string/profile"
+        android:iconTint="@color/white"
         app:showAsAction="always" />
 </menu>
