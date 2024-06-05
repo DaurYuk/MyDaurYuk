@@ -83,4 +83,7 @@ dependencies {
     // Paging 3
     val pagingVersion = "3.0.0"
     implementation ("androidx.paging:paging-runtime:$pagingVersion")
+
+    // Authentication Google Account
+    implementation ("com.google.android.gms:play-services-auth:19.0.0")
 }

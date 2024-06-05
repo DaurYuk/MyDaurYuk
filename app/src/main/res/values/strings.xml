@@ -35,4 +35,5 @@
     <string name="deskripsi_sampah">Deskripsi sampah</string>
     <string name="sampah_organik_desc">Sampah organik mudah terurai di alam (busuk), seperti sisa makanan, daun, ranting. Sampah organik juga dapat diproses menjadi pupuk kompos. Kemudian tempat sampah organik ditandai berwarna hijau.</string>
     <string name="sampah_anorganik_desc">ciri-ciri sampah anorganik adalah sulit terurai, seperti plastik, kaleng, styrofoam. Hasil dari sampah ini bisa diolah menjadi kerajinan atau didaur ulang di pabrik. Untuk tempat sampah anorganik biasanya ditandai berwarna kuning.</string>
+    <string name="default_web_client_id">AIzaSyB5yaSvLVWiVmL8Y2xWUz2YqTXyCGkxbsk</string>
 </resources>
