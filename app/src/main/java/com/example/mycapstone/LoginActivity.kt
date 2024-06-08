@@ -55,11 +55,6 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.forgotPasswordButton.setOnClickListener {
-            val intent = Intent(this, ForgotPasswordActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun signInWithGoogle(){
