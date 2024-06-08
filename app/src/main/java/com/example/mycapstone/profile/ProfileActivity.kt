@@ -15,11 +15,11 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupLogoutButton()
-        setupRewardButton()
+        logoutButton()
+        rewardButton()
     }
 
-    private fun setupLogoutButton() {
+    private fun logoutButton() {
         binding.logoutButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -28,7 +28,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRewardButton() {
+    private fun rewardButton() {
         binding.rewardButton.setOnClickListener {
             val pick = Intent(this, RewardActivity::class.java)
             startActivity(pick)
