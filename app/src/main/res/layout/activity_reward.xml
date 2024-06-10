@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <!-- Variable declarations -->
-    </data>
-    <LinearLayout
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/totalPointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Points: 0"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/claimPointsButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Claim Points"/>
-    </LinearLayout>
-</layout>
+    <Button
+        android:id="@+id/claimPointsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Claim Points"/>
+</LinearLayout>

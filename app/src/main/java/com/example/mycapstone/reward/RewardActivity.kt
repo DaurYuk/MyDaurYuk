@@ -1,14 +1,11 @@
 package com.example.mycapstone.reward
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import com.example.mycapstone.R
 import com.example.mycapstone.databinding.ActivityRewardBinding
-import com.example.mycapstone.reward.adapter.WasteHistoryAdapter
-import com.example.mycapstone.reward.repository.WasteRepository
+import com.example.mycapstone.reward.adapter.RewardAdapter
 import com.example.mycapstone.reward.viewmodel.WasteViewModel
 
 class RewardActivity : AppCompatActivity() {
@@ -19,18 +16,29 @@ class RewardActivity : AppCompatActivity() {
         binding = ActivityRewardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = WasteHistoryAdapter()
-        binding.recyclerView.adapter = adapter
+        val rewardAdapter = RewardAdapter()
+        binding.recyclerView.adapter = rewardAdapter
 
-        wasteViewModel.wasteHistory.observe(this){wasteHistory ->
-            adapter.submitList(wasteHistory)
+        wasteViewModel.totalPoints.observe(this){points ->
+            binding.totalPointsTextView.text = "Total Points: $points"
+            wasteViewModel.loadClaimableRewards(points)
+        }
+
+        wasteViewModel.claimableRewards.observe(this) { rewards ->
+            rewardAdapter.submitList(rewards)
+        }
+
+        wasteViewModel.apiResponse.observe(this){response ->
+            Toast.makeText(this, response, Toast.LENGTH_SHORT).show()
         }
 
         wasteViewModel.loadWasteHistory()
 
         binding.claimPointsButton.setOnClickListener {
-            wasteViewModel.loadRewards()
-            // Here you can show a dialog or new activity with the reward list
+//            val rewardId = "someRewardId"
+//            wasteViewModel.claimReward(rewardId)
+//            wasteViewModel.loadRewards()
+            // Here you can show a dialog or new activity with the reward list :please help me
         }
     }
 }
