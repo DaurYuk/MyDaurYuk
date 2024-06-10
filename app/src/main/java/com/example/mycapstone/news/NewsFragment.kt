@@ -1,4 +1,4 @@
-package com.example.mycapstone
+package com.example.mycapstone.news
 
 import android.content.Intent
 import android.os.Bundle

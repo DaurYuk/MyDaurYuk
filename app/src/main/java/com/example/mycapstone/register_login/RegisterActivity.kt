@@ -1,4 +1,4 @@
-package com.example.mycapstone
+package com.example.mycapstone.register_login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

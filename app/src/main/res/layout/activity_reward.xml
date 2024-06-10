@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/totalPointsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Points: 0"
+        android:textColor="@color/black"
+        android:text="Total Points: 1.034 BTC"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_margin="16dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="479dp"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_reward"
         android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/claimPointsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Claim Points"/>
+<!--    <Button-->
+<!--        android:id="@+id/claimPointsButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/selected_bottom_nav_color"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:text="Claim Points"/>-->
 </LinearLayout>

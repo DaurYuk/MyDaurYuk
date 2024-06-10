@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.IntentCompat
 import com.example.mycapstone.news.data.local.entity.NewsEntity
-import com.example.mycapstone.ViewModelFactory
+import com.example.mycapstone.news.ViewModelFactory
 import com.example.mycapstone.databinding.ActivityNewsDetailBinding
 
 class NewsDetailActivity : AppCompatActivity() {

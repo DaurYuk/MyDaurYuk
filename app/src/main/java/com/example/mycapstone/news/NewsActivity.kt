@@ -1,10 +1,8 @@
-package com.example.mycapstone
+package com.example.mycapstone.news
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +12,6 @@ import com.example.mycapstone.news.ui.list.NewsViewModel
 import com.example.mycapstone.news.ui.detail.NewsDetailActivity
 import com.example.mycapstone.news.ui.list.NewsAdapter
 import com.example.mycapstone.news.data.Result
-import com.example.mycapstone.profile.ProfileActivity
 
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding

@@ -3,7 +3,7 @@ package com.example.mycapstone.profile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.mycapstone.LoginActivity
+import com.example.mycapstone.register_login.LoginActivity
 import com.example.mycapstone.databinding.ActivityProfileBinding
 import com.example.mycapstone.reward.RewardActivity
 

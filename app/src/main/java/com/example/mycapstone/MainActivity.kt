@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mycapstone.camera.CameraActivity
 import com.example.mycapstone.databinding.ActivityMainBinding
 import com.example.mycapstone.history.HistoryActivity
+import com.example.mycapstone.news.NewsFragment
 import com.example.mycapstone.profile.ProfileActivity
 import com.example.mycapstone.recomendation.RecommendationActivity
 

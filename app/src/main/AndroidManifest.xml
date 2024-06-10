@@ -43,16 +43,16 @@
             android:name=".news.ui.detail.NewsDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".NewsActivity"
+            android:name=".news.NewsActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".register_login.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".register_login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

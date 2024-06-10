@@ -1,10 +1,12 @@
-package com.example.mycapstone
+package com.example.mycapstone.register_login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.mycapstone.MainActivity
+import com.example.mycapstone.R
 import com.example.mycapstone.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
