@@ -185,7 +185,4 @@ dependencies {
     // Authentication Google Account
     implementation("com.google.android.gms:play-services-auth:19.0.0")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
-    implementation("androidx.paging:paging-runtime-ktx:3.0.1")
 }

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mycapstone.camera.CameraActivity
 import com.example.mycapstone.databinding.ActivityMainBinding
 import com.example.mycapstone.history.HistoryActivity
+import com.example.mycapstone.news.NewsActivity
 import com.example.mycapstone.profile.ProfileActivity
 import com.example.mycapstone.recomendation.RecommendationActivity
 
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
+                    val intent = Intent(this, NewsActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.navigation_history -> {

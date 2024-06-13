@@ -1,5 +1,6 @@
 package com.example.mycapstone.history.db
 
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
