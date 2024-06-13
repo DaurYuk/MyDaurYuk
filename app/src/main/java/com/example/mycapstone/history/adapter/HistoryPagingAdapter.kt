@@ -1,6 +1,5 @@
 package com.example.mycapstone.history.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -9,15 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycapstone.databinding.ItemHistoryBinding
 import com.example.mycapstone.history.db.History
-
-class HistoryPagingAdapter(private val onDeleteClick: (History) -> Unit) : PagingDataAdapter<History, HistoryPagingAdapter.HistoryViewHolder>(
-    DIFF_CALLBACK
-) {
+class HistoryPagingAdapter(private val onDeleteClick: (History) -> Unit) : PagingDataAdapter<History, HistoryPagingAdapter.HistoryViewHolder>(DIFF_CALLBACK) {
 
     class HistoryViewHolder(private val binding: ItemHistoryBinding, private val onDeleteClick: (History) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(history: History) {
-            // Example of adding logs
-            Log.d("HistoryActivity", "Submitting data to adapter")
             binding.imageClassification.setImageURI(history.imagePath.toUri())
             binding.classificationTextView.text = history.result
             binding.confidenceTextView.text = "Confidence: ${history.confidenceScore}%"
@@ -52,4 +46,3 @@ class HistoryPagingAdapter(private val onDeleteClick: (History) -> Unit) : Pagin
         }
     }
 }
-

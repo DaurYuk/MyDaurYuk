@@ -46,9 +46,6 @@
             android:name=".news.NewsActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="false" />
-        <activity
             android:name=".register_login.RegisterActivity"
             android:exported="false" />
         <activity
@@ -75,9 +72,9 @@
             <meta-data
                 android:name="com.google.android.gms.wallet.api.enabled"
                 android:value="true" />
-            <meta-data
-                android:name="com.google.android.gms.version"
-                android:value="@integer/google_play_services_version" />
+<!--            <meta-data-->
+<!--                android:name="com.google.android.gms.version"-->
+<!--                android:value="@integer/google_play_services_version" />-->
         </provider>
     </application>
 

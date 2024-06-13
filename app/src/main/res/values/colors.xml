@@ -2,7 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="selected_bottom_nav_color">#3CB541</color>
-    <color name="default_bottom_nav_color">#17AF6F</color>
+    <color name="gray">#BABABA</color>
+    <color name="selected_bottom_nav_color">#025940</color>
+    <color name="default_bottom_nav_color">#025940</color>
     <color name="rewardColor">#F2AB20</color>
+    <color name="danger_color">#830101</color>
 </resources>

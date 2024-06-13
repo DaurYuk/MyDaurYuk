@@ -3,38 +3,49 @@ package com.example.mycapstone.register_login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
+import android.view.View
 import android.widget.Toast
 import com.example.mycapstone.MainActivity
 import com.example.mycapstone.R
 import com.example.mycapstone.databinding.ActivityLoginBinding
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityLoginBinding
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN = 9001
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Konfigurasi google sign-in
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
+        val text = "Belum punya akun? Daftar"
+        val spannableString = SpannableString(text)
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        binding.googleSignInButton.setOnClickListener {
-            signInWithGoogle()
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+               val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+                startActivity(intent)
+            }
         }
+
+        val start = text.indexOf("Daftar")
+        val end = start + "Daftar".length
+
+        // Apply clickable span
+        spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        // Apply underline
+        spannableString.setSpan(UnderlineSpan(), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        // Apply text color
+        val linkColor = resources.getColor(R.color.selected_bottom_nav_color, null) // Replace with your link color
+        spannableString.setSpan(ForegroundColorSpan(linkColor), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        binding.registerDesc.text = spannableString
+        binding.registerDesc.movementMethod = LinkMovementMethod.getInstance()
 
         binding.loginButton.setOnClickListener {
             val username = binding.usernameEditText.text.toString()
@@ -47,44 +58,7 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             } else {
                 Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
-
             }
-        }
-
-        binding.registerButton.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-    }
-
-    private fun signInWithGoogle(){
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data:Intent?){
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN){
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignResult(task)
-        }
-    }
-
-    private fun handleSignResult(completedTask: Task<GoogleSignInAccount>){
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            // Sign In Successfully. show authenticated UI.
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }catch (e: ApiException){
-            Log.w("LoginActivity", "signInResult:failed code=" + e.statusCode)
-            Log.e("LoginActivity", "signInResult:error message=" + e.message)
-            Toast.makeText(this, "Login with Google failed: ${e.statusCode}", Toast.LENGTH_SHORT).show()
-
         }
     }
 
@@ -93,3 +67,4 @@ class LoginActivity : AppCompatActivity() {
         return username == "a" && password == "a"
     }
 }
+

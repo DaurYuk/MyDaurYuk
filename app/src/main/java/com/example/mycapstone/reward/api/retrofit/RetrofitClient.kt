@@ -1,6 +1,5 @@
 package com.example.mycapstone.reward.api.retrofit
 
-import com.example.mycapstone.reward.api.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -52,4 +52,3 @@ class HistoryActivity : AppCompatActivity() {
         }
     }
 }
-

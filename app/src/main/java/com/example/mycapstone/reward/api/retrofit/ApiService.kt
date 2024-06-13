@@ -1,5 +1,7 @@
-package com.example.mycapstone.reward.api
+package com.example.mycapstone.reward.api.retrofit
 
+import com.example.mycapstone.reward.api.ClaimRewardResponse
+import com.example.mycapstone.reward.api.UpdateRewardBalanceResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

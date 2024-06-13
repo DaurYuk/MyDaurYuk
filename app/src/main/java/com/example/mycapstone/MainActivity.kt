@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mycapstone.camera.CameraActivity
 import com.example.mycapstone.databinding.ActivityMainBinding
 import com.example.mycapstone.history.HistoryActivity
-import com.example.mycapstone.news.NewsFragment
 import com.example.mycapstone.profile.ProfileActivity
 import com.example.mycapstone.recomendation.RecommendationActivity
 
@@ -28,20 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        // Set initial fragment
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, NewsFragment())
-                .commit()
-        }
 
         // Bottom bar navigation
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, NewsFragment())
-                        .commit()
                     true
                 }
                 R.id.navigation_history -> {
