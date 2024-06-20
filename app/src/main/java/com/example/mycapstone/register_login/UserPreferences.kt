@@ -8,7 +8,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-
 class UserPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
     fun getLoginSession(): Flow<Boolean> {
@@ -29,7 +28,6 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-
     suspend fun saveToken(token: String) {
         dataStore.edit { preferences ->
             preferences[TOKEN] = token
@@ -41,7 +39,6 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
             preferences[NAME] ?: ""
         }
     }
-
 
     suspend fun saveName(name: String) {
         dataStore.edit { preferences ->
@@ -72,6 +69,5 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private val LOGIN_SESSION = booleanPreferencesKey("login_session")
         private val TOKEN = stringPreferencesKey("token")
         private val NAME = stringPreferencesKey("name")
-
     }
 }
